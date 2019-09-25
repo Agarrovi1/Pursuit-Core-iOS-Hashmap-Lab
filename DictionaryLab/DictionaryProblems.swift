@@ -115,6 +115,19 @@ func canConstruct(note: String, from originalLetters: String) -> Bool {
 // Return whether or not an input array contains duplicates
 
 func containsDuplicates(arr: [Int]) -> Bool {
+    var frequencyDict = [Int:Int]()
+    for a in arr {
+        if let freq = frequencyDict[a] {
+            frequencyDict[a] = freq + 1
+        } else {
+            frequencyDict[a] = 1
+        }
+    }
+    for value in frequencyDict.values {
+        if value > 1 {
+            return true
+        }
+    }
     return false
 }
 
