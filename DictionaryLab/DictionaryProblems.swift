@@ -134,7 +134,23 @@ func containsDuplicates(arr: [Int]) -> Bool {
 // Find all values that appear exactly once in a given array of Strings
 
 func uniqueValues(in arr: [String]) -> [String] {
-    return []
+    var frequencyDict = [String:Int]()
+    var answerArr = arr
+    for a in arr {
+        if let freq = frequencyDict[a] {
+            frequencyDict[a] = freq + 1
+        } else {
+            frequencyDict[a] = 1
+        }
+    }
+    for (str,freq) in frequencyDict {
+        if freq == 1 {
+            
+        } else {
+            answerArr = answerArr.filter({$0 != str})
+        }
+    }
+    return answerArr
 }
 
 // Sort a given array by how often each term appears
