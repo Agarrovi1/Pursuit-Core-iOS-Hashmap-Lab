@@ -3,7 +3,23 @@ import Foundation
 // Find the most frequently occurring character in a given string
 
 func mostFrequentlyOccurringChar(in str: String) -> Character {
-    return "a"
+    var frequencyDict = [Character:Int]()
+    for a in str {
+        if let freq = frequencyDict[a] {
+            frequencyDict[a] = freq + 1
+        } else {
+            frequencyDict[a] = 1
+        }
+    }
+    var highestCount = 0
+    var answer = Character(" ")
+    for (key,value) in frequencyDict {
+        if highestCount < value {
+            answer = key
+            highestCount = value
+        }
+    }
+    return answer
 }
 
 // Find the first indicies whose values sum to a given number
