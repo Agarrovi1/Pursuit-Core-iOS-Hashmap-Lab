@@ -81,7 +81,34 @@ func secondMostFrequentlyOccurringChar(in str: String) -> Character {
 // Submit to the leetcode link for more tests
 
 func canConstruct(note: String, from originalLetters: String) -> Bool {
-    return false
+    var magazineDict = [Character:Int]()
+    for a in originalLetters {
+        if let freq = magazineDict[a] {
+            magazineDict[a] = freq + 1
+        } else {
+            magazineDict[a] = 1
+        }
+    }
+    
+    var neededDict = [Character:Int]()
+    for a in note {
+        if let freq = neededDict[a] {
+            neededDict[a] = freq + 1
+        } else {
+            neededDict[a] = 1
+        }
+    }
+    
+    for (char, freq) in neededDict {
+        if let magFreq = magazineDict[char] {
+            if magFreq < freq {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    return true
 }
 
 
