@@ -156,6 +156,30 @@ func uniqueValues(in arr: [String]) -> [String] {
 // Sort a given array by how often each term appears
 
 func sortByFrequency(arr: [Int]) -> [Int] {
-    return []
+    var frequencyDict = [Int:Int]()
+    for a in arr {
+        if let freq = frequencyDict[a] {
+            frequencyDict[a] = freq + 1
+        } else {
+            frequencyDict[a] = 1
+        }
+    }
+    var freqArr = [Int]()
+    for (_, freq) in frequencyDict {
+        freqArr.append(freq)
+    }
+    freqArr.sort(by: {$0 > $1})
+    var ansArr = [Int]()
+    
+    for a in freqArr {
+        for (num, freq) in frequencyDict {
+            if freq == a {
+                for _ in 1...freq {
+                    ansArr.append(num)
+                }
+            }
+        }
+    }
+    return ansArr
 }
 
